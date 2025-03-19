@@ -5,12 +5,12 @@ xir = 139.7839#109 0.975
 a =  14
 s = 11
 n = 110
-az = a + s / 2
+az = a + s / 2 # h1 : az > a + s / 2
 
 z = (a - az) * (n - 1) ** 0.5 / s
 print(z)
 
-azz = s * 3
+azz = s * 3 #h1 : azz != s * 3
 
 zz = (n - 1) * s / azz
 print(zz)
