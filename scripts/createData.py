@@ -14,7 +14,8 @@ data4 = data3.fillna("2023-04-02")
 print(data['status'].unique())
 print(data4.count())
 
-out = data4.sample(1000)
+out = data4.sample(10000)
+print(out['status'].unique())
 out.to_csv("../data/final.csv")
 
 
