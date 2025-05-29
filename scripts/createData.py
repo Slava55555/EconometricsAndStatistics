@@ -14,6 +14,10 @@ data3 = data2.dropna(subset=["title", "type" , "genres", "themes",
 data4 = data3.fillna("2023-04-02")
 print(data['status'].unique())
 print(data4.count())
+data["start_date"] = pd.to_datetime(data["start_date"])
+data["end_date"] = pd.to_datetime(data["end_date"])
+data["genres"] = data["genres"].apply(eval)
+data["themes"] = data["themes"].apply(eval)
 
 all_themes = [theme for sublist in data["themes"] for theme in sublist]
 all_genres = [genre for sublist in data["genres"] for genre in sublist]
@@ -31,9 +35,13 @@ view= 5
 top_themes = theme_df.head(view)
 top_genres = genre_df.head(view)
 
-for genre in  top_genres:
+print(top_genres)
+
+
+for genre in  top_genres['Genre']:
+  print(genre)
   data4[f'has {genre}'] = data4['genres'].apply(lambda x: 1 if genre in x else 0)
-for theme in  top_themes:
+for theme in  top_themes['Theme']:
   data4[f'has {theme}'] = data4['themes'].apply(lambda x: 1 if theme in x else 0)
 
 
@@ -42,6 +50,8 @@ sampled_data = data4.groupby('type', group_keys=False).apply(lambda x: x.sample(
 print(sampled_data['type'].value_counts())
 
 print(sampled_data['status'].unique())
+print(sampled_data)
+
 sampled_data.to_csv("../data/final.csv")
 
 
