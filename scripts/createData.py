@@ -1,7 +1,7 @@
 import pandas as pd
 from collections import Counter
 
-data = pd.read_csv("../data/manga.csv")
+data = pd.read_csv("data/manga.csv")
 
 data2 = data[["title", "type","status" , "genres", "themes",
               "score", "scored_by", "volumes", "chapters",
@@ -35,7 +35,8 @@ view= 5
 top_themes = theme_df.head(view)
 top_genres = genre_df.head(view)
 
-print(top_genres)
+print(top_genres['Genre'].unique())
+print(top_themes['Theme'].unique())
 
 
 for genre in  top_genres['Genre']:
@@ -52,6 +53,6 @@ print(sampled_data['type'].value_counts())
 print(sampled_data['status'].unique())
 print(sampled_data)
 
-sampled_data.to_csv("../data/final.csv")
+sampled_data.to_csv("data/final.csv")
 
 
